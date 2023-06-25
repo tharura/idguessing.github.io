@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Number</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+        body{
+            background-color: black;
+            align-items: center;
+            justify-content: center;
+            color:white;
+            text-align: center;
+            font-family: Belanosima;
+        }
+        #logo{
+            width: 70px;
+            margin: 0px;
+            padding: 10px 0px 0px 10px;
+        }
+        h1{
+            padding-top: 20px;
+            font-size: 30pt;
+            font-weight: bold;
+            margin:0px;
+            padding: 5px;
+        }
+        .part{
+            font-size:22pt;
+            padding: 1px;
+        }
+        #bday{
+            padding-top:10px;
+            margin: 5px;
+            font-size:22pt;
+        }
+        #d1{
+            font-size: 18pt;
+            text-decoration: none;
+            border:#FFFFFF 1px solid;
+            padding:5px 40px;
+            border-radius: 60px;
+        }
+        #gender{
+            padding:40px 0px 0px 0px;
+            margin: 5px;
+            font-size:22pt;
+        }
+        input[type="radio"] {
+           appearance: auto;
+           margin-right: 10px;
+           color: currentColor;
+           width: 0.7em;
+           height: 0.7em;
+           border: 0.15em solid currentColor;
+           border-radius: 50%;
+           font-size:20px;
+        }
+        #myBtn{
+            font-size: 20pt;
+            text-decoration: none;
+            background-color: white;
+            border:#FFFFFF 1px solid;
+            padding:10px 40px;
+            border-radius: 60px;
+        }
+        #myBtn:hover{
+            background-color: black;
+            color:white;
+        }
+        #outputtxt{
+            padding:30px 0px 0px 0px;
+            margin:0px;
+            font-size:22pt;
+        }
+        #output{
+            margin:10px;
+            padding: 0px;
+            font-size:30pt;
+            color:white;
+        }
+        #last{
+            font-size: 18px;
+            font-weight: none;
+            color:rgb(145, 145, 145);
+            padding:10px;
+            margin: 10px;
+        }
+        #trr{
+            font-family: arial;
+            font-size: 13px;
+            margin: 0px 0px 0px 0px;
+            padding: 0px 0px 0px 20px;
+            position: fixed;
+            bottom: 10px;
+            left: 5px;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <img id="logo"src="https://i.ibb.co/wKNBwgY/logo-fin-orginal-white-favicon.png">
+    <h1>ID NUMBER GUSSING</h1>
+    <div class="part">
+    <p id="bday">Select Your Birthday</p>
+    <input type="date" id="d1">
+    <br>
+    <p id="gender">Select Your Gender</p>
+    <input type="radio" name="rad1"value="M"id="M">Male</input>
+    <input type="radio" name="rad1"Value="F"id="F">Female</input>
+    <br><br>
+    <button id="myBtn" onclick="calculateDays()">Enter</button>
+    <br>
+    <p id="outputtxt">Your ID Number Is</p>
+    <p id="output">~~~~~~~~~~~~<p>
+    <footer>
+        
+        <p id="last">Last 5 digit assigned by the goverment...So we can't guss that</P>
+        <p id="trr">&copy;&nbsp; &lt;/TR^2&gt;&nbsp; 2023</p>
+    </footer>
+    </div>
+    <script>
+        var input = document.getElementById("d1");
+        input.addEventListener("keypress", function(event){
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("myBtn").click();
+             }
+        });
+
+    function calculateDays(){
+        d1= document.getElementById("d1").value;
+
+        let d1part =d1.length;
+        let year= d1.substr(0,4);
+        let month= d1.substr(5,2);
+        console.log(year);
+        console.log(month);
+
+        const dateOne = new Date(d1);
+        const dateTwo = new Date(year);
+
+        const time = Math.abs(dateTwo-dateOne);
+
+        const days = Math.ceil(time/(1000*60*60*24));
+
+        const d=days+1;
+        const ld=d+1
+        console.log(d);
+
+        const df=d+500;
+        const ldf=ld+500;
+        
+        if(year%4==0){
+            if(document.getElementById('M').checked == true) {      
+                if (d>=100){
+                document.getElementById("output").innerHTML=year+d+'#####';document.getElementById("output").style.color="aquamarine";}
+                else{document.getElementById("output").innerHTML=year+0+d+'#####';document.getElementById("output").style.color="aquamarine";}
+            } 
+            else if(document.getElementById('F').checked == true) {   
+                document.getElementById("output").innerHTML=year+df+'#####';document.getElementById("output").style.color="aquamarine";} 
+            else{document.getElementById("output").innerHTML="Error, inavild data...!";document.getElementById("output").style.color="red";}
+        }
+        else{
+            if(month>2){
+                if(document.getElementById('M').checked == true) {      
+                    if (d>=100){
+                    document.getElementById("output").innerHTML=year+ld+'#####';document.getElementById("output").style.color="aquamarine";}
+                    else{document.getElementById("output").innerHTML=year+0+ld+'#####';document.getElementById("output").style.color="aquamarine";}
+                } 
+                else if(document.getElementById('F').checked == true) {   
+                    document.getElementById("output").innerHTML=year+ldf+'#####';document.getElementById("output").style.color="aquamarine";} 
+                else{document.getElementById("output").innerHTML="Error, inavild data...!";document.getElementById("output").style.color="red";}   
+            }
+            else{
+                if(document.getElementById('M').checked == true) {      
+                    if (d>=100){
+                    document.getElementById("output").innerHTML=year+d+'#####';document.getElementById("output").style.color="aquamarine";}
+                    else{document.getElementById("output").innerHTML=year+0+d+'#####';document.getElementById("output").style.color="aquamarine";}
+                } 
+                else if(document.getElementById('F').checked == true) {   
+                    document.getElementById("output").innerHTML=year+df+'#####';document.getElementById("output").style.color="aquamarine";} 
+                else{document.getElementById("output").innerHTML="Error, inavild data...!";document.getElementById("output").style.color="red";}   
+            }
+        }
+    }
+    </script>
+</body>
+</html>
